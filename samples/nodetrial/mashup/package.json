@@ -1,0 +1,16 @@
+{
+  "name": "mashup",
+  "version": "1.0.0",
+  "description": "Mashup",
+  "main": "mashing_multiple_APIs.js",
+  "scripts": {
+    "test": "node mashing_multiple_APIs.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.0",
+    "edgemicro": "^2.4.6",
+    "request": "^2.83.0"
+  }
+}
