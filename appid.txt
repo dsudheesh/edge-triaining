@@ -1,0 +1,5 @@
+8d33c0ee070e86f7a8961a9ee10af071
+
+
+Json threat endpoint
+https://apibaas-trial.apigee.net/bharathnew/sandbox/employees/
