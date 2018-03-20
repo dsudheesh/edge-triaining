@@ -1,0 +1,5 @@
+curl -X POST --header "Content-Type: application/json" --header "Authorization: Basic akshdkasdasdasdasasd" -d "{
+  \"name\": \"actual_real\",
+   \"hostAliases\": [\"firstrouterip:9001\", \"secondrouterip:9001\"],
+  \"port\": \"9001\"
+}" "https://api.enterprise.apigee.com/v1/organizations/dsudheesh/environments/prod/virtualhosts"
