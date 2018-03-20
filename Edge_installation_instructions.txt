@@ -1,0 +1,98 @@
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+
+*** Initial bootstrap, common to all hosts ***
+*** These steps may be done across all hosts simultaneously ***
+
+curl https://software.apigee.com/bootstrap_4.17.05.sh -o /tmp/apigee/bootstrap_4.17.05.sh
+yum -y install /tmp/apigee/jdk-8u92-linux-x64.rpm
+bash /tmp/apigee/bootstrap_4.17.05.sh apigeeuser= apigeepassword=
+/opt/apigee/apigee-service/bin/apigee-service apigee-setup install
+
+-------------------------------------------------------------------------------
+
+*** Edge Install ***
+*** These steps must be run one at a time ***
+
+Hosts 1-3:
+/opt/apigee/apigee-setup/bin/setup.sh -f /tmp/apigee/edge-response.txt -p ds
+
+Host 1:
+/opt/apigee/apigee-setup/bin/setup.sh -f /tmp/apigee/edge-response.txt -p ms
+
+Hosts 2-3:
+/opt/apigee/apigee-setup/bin/setup.sh -f /tmp/apigee/edge-response.txt -p rmp
+
+Hosts 4-5:
+/opt/apigee/apigee-setup/bin/setup.sh -f /tmp/apigee/edge-response.txt -p sax
+
+Host 1:
+/opt/apigee/apigee-service/bin/apigee-service apigee-provision install
+/opt/apigee/apigee-service/bin/apigee-service apigee-provision setup-org -f /tmp/apigee/edge-response-setup-org.txt
+/opt/apigee/apigee-service/bin/apigee-service apigee-validate install
+/opt/apigee/apigee-service/bin/apigee-service apigee-validate setup
+/opt/apigee/apigee-service/bin/apigee-service apigee-validate clean
+
+-------------------------------------------------------------------------------
+
+*** Developer Portal Install ***
+*** These steps must be run one at a time ***
+
+Host 6:
+/opt/apigee/apigee-setup/bin/setup.sh -f /tmp/apigee/dev-portal-response.txt -p pdb
+/opt/apigee/apigee-setup/bin/setup.sh -f /tmp/apigee/dev-portal-response.txt -p dp
+cd /opt/apigee/apigee-drupal/sites/default; drush pm-update
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination :8079
+
+-------------------------------------------------------------------------------
+
+*** Edge Upgrade ***
+*** These steps may be done across all hosts simultaneously ***
+
+curl https://software.apigee.com/bootstrap_4.17.09.sh -o /tmp/apigee/bootstrap_4.17.09.sh
+bash /tmp/apigee/bootstrap_4.17.09.sh apigeeuser= apigeepassword=
+/opt/apigee/apigee-service/bin/apigee-service apigee-setup update
+
+*** These steps must be run one at a time ***
+
+Host 1:
+/opt/apigee/apigee-service/bin/apigee-service apigee-validate update
+/opt/apigee/apigee-service/bin/apigee-service apigee-provision update
+
+Host 1-3:
+/opt/apigee/apigee-setup/bin/update.sh -f /tmp/apigee/edge-response.txt -c cs,zk
+
+Host 4-5:
+/opt/apigee/apigee-setup/bin/update.sh -f /tmp/apigee/edge-response.txt -c qpid,ps
+/opt/apigee/apigee-service/bin/apigee-service apigee-postgresql start
+
+Host 1:
+/opt/apigee/apigee-setup/bin/update.sh -f /tmp/apigee/edge-response.txt -c ldap
+
+Host 4-5, then 1-3:
+/opt/apigee/apigee-setup/bin/update.sh -f /tmp/apigee/edge-response.txt -c edge
+
+Host 1:
+/opt/apigee/apigee-setup/bin/update.sh -f /tmp/apigee/edge-response.txt -c ui
+
+-------------------------------------------------------------------------------
+
+*** Developer Portal Upgrade ***
+*** These steps may be done across all hosts simultaneously ***
+
+curl https://software.apigee.com/bootstrap_4.17.09.sh -o /tmp/apigee/bootstrap_4.17.09.sh
+bash /tmp/apigee/bootstrap_4.17.09.sh apigeeuser= apigeepassword=
+/opt/apigee/apigee-service/bin/apigee-service apigee-setup update
+
+*** These steps must be run one at a time ***
+
+Host 6:
+/opt/apigee/apigee-setup/bin/update.sh -f /tmp/apigee/dev-portal-response.txt -c ps
+/opt/apigee/apigee-service/bin/apigee-service apigee-postgresql start
+/opt/apigee/apigee-setup/bin/update.sh -f /tmp/apigee/dev-portal-response.txt -c dp
+Visit http://<portalIP_DNS>/update.php in a browser
+# If you aren't forwarding port 80 to 8079
+Visit http://<portalIP_DNS>:8079/update.php in a browser
+
+-------------------------------------------------------------------------------
