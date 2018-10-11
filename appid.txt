@@ -8,7 +8,7 @@ https://apibaas-trial.apigee.net/bharathnew/sandbox/employees/
 
 Google Maps API Key
 
-##AIzaSyBG94SNz9TbeprsMjE9IhjyA4bgmq2VjmM##
+
+AIzaSyDqJ0pP6MdA6AMPG0Vap48ez7lcUVaDp2k
 
 
-AIzaSyAfLyZcZMwIQaH-5NjQbkLXVkmImr2OKoI
