@@ -8,9 +8,5 @@ https://apibaas-trial.apigee.net/bharathnew/sandbox/employees/
 
 Google Maps API Key
 
-
-#AIzaSyDqJ0pP6MdA6AMPG0Vap48ez7lcUVaDp2k
-
-AIzaSyBzKLswMdQlykpyFciWq2b2eBoHx_MnVic
-
-
+user-agent: 
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
