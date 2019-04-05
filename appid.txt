@@ -1,12 +1,8 @@
-8d33c0ee070e86f7a8961a9ee10af071
-
-
-Json threat endpoint
-https://apibaas-trial.apigee.net/bharathnew/sandbox/employees/
-
-
-
-Google Maps API Key
 
 user-agent: 
 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+
+
+Open Map API
+https://nominatim.openstreetmap.org/reverse?format=json&lat=34.9824031826&lon=-92.833114795
