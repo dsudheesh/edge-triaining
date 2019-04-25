@@ -10,29 +10,29 @@ https://nominatim.openstreetmap.org/reverse?format=json&lat=34.9824031826&lon=-9
 
 
 ################### service callout policy related details #######################################
-<?xml version=“1.0” encoding=“UTF-8" standalone=“yes”?>
-<ServiceCallout async=“false” continueOnError=“false” enabled=“true” name=“ServiceCalloutGeoLoc”>
-   <DisplayName>ServiceCalloutGeoLoc</DisplayName>
-   <Properties/>
-   <Request>
-       <Set>
-           <QueryParams>
-               <QueryParam name=“format”>json</QueryParam>
-               <QueryParam name=“lat”>{lat}</QueryParam>
-               <QueryParam name=“lon”>{long}</QueryParam>
-           </QueryParams>
-           <Headers>
-               <Header name=“user-agent”>
-               Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
-               </Header>
-           </Headers>
-       </Set>
-   </Request>
-   <Response>calloutResponse</Response>
-   <HTTPTargetConnection>
-       <Properties/>
-       <URL>https://nominatim.openstreetmap.org/reverse</URL>
-   </HTTPTargetConnection>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="ServiceCalloutGeoLoc">
+    <DisplayName>ServiceCalloutGeoLoc</DisplayName>
+    <Properties/>
+    <Request>
+        <Set>
+            <QueryParams>
+                <QueryParam name="format">json</QueryParam>
+                <QueryParam name="lat">{lat}</QueryParam>
+                <QueryParam name="lon">{long}</QueryParam>
+            </QueryParams>
+            <Headers>
+                <Header name="user-agent">
+                Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+                </Header>
+            </Headers>
+        </Set>
+    </Request>
+    <Response>calloutResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://nominatim.openstreetmap.org/reverse</URL>
+    </HTTPTargetConnection>
 </ServiceCallout>
 
 ###########################################################################
